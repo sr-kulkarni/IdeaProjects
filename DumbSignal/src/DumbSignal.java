@@ -60,7 +60,7 @@ public class DumbSignal {
             Montague.startOperation(Zanker);
         }
         catch(Exception ex){
-            System.out.println("Some exception occured");
+            System.out.println(ex+" Some exception occured");
         }
     }
 
