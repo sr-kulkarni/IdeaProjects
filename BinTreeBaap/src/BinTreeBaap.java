@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -65,6 +67,81 @@ public class BinTreeBaap extends Node{
 
     }
 
+    public void commonAncestor(int x, int y){
+        /*
+           Traverse the tree until you hit the element and store the path in an array.
+           Repeat for the second element.
+           Check two lists and find the node until they differ.
+         */
+        List l1 = new ArrayList();
+        List l2 = new ArrayList();
+        Node temp = this;
+        while(true){
+            int checker = temp.data;
+            if(checker == x){
+                break;
+            }
+           // System.out.println("Checker is  "+checker);
+            if(x < checker){
+                if(temp.lchild == null) {
+                    //temp.lchild = new Node(stuff);
+                    System.out.println("Node not found! Wrong value Entered");
+                    return;
+                }
+                l1.add(temp.data);
+                temp = temp.lchild;
+            }
+            else if(x > checker){
+                if(temp.rchild == null) {
+                    //temp.rchild = new Node(stuff);
+                    System.out.println("Node not found! Wrong value entered");
+                    return;
+                }
+                l1.add(temp.data);
+                temp = temp.rchild;
+            }
+
+        }
+
+        temp = this;
+        while(true){
+            int checker = temp.data;
+            if(checker == y){
+                break;
+            }
+            // System.out.println("Checker is  "+checker);
+            if(y < checker){
+                if(temp.lchild == null) {
+                    //temp.lchild = new Node(stuff);
+                    System.out.println("Node not found! Wrong value Entered");
+                    return;
+                }
+                l2.add(temp.data);
+                temp = temp.lchild;
+            }
+            else if(y > checker){
+                if(temp.rchild == null) {
+                    //temp.rchild = new Node(stuff);
+                    System.out.println("Node not found! Wrong value entered");
+                    return;
+                }
+                l2.add(temp.data);
+                temp = temp.rchild;
+            }
+
+        }
+        int i;
+        for(i=0; i<l1.size() && i<l2.size();i++){
+            if(l1.get(i) != l2.get(i))
+                break;
+
+        }
+        System.out.println("The Lowest Common Ancestor is "+l1.get(i-1));
+
+
+
+    }
+
     public void display(){
         this.inorder();
     }
@@ -77,6 +154,14 @@ public class BinTreeBaap extends Node{
         B.addElements();
         System.out.println("Your Binary tree is : ");
         B.display();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the element #1 :");
+        int x = input.nextInt();
+        System.out.println("Enter the element #2 ");
+        int y = input.nextInt();
+
+        B.commonAncestor(x,y);
+
 
     }
 
