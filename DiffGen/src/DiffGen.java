@@ -42,9 +42,36 @@ public class DiffGen {
             }
         }
 
-        System.out.println("The longest common sub sequence is of " + lcs[l1][l2] + " length");
+        //System.out.println("The longest common sub sequence is of " + lcs[l1][l2] + " length");
 
+        /*
+         Now that we have the matrix ready, lets traverse it backwards to see the actual common sequence
+         */
+        int index = lcs[l1][l2];
+        char[] seq =  new char[index+1];
+        seq[index] = '\0';
+        int i = l1;
+        int j = l2;
 
+        while(i   >0 && j > 0){
+
+            if(this.data.charAt(i-1) == d2.data.charAt(j-1)){
+                seq[index-1] = this.data.charAt(i-1);
+                i--;
+                j--;
+                index--;
+            }
+            else if(lcs[i-1][j] > lcs[i][j-1]){
+                i--;
+            }
+            else{
+                j--;
+            }
+
+        }
+        String S3 = new String(seq);
+        //System.out.println("\nThe longest subsequence is : "+S3);
+        
 
     }
 
