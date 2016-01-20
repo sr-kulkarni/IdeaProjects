@@ -15,7 +15,7 @@ public class DiffGen {
         System.out.println("The content is : "+ this.data);
     }
 
-    void getLCS(DiffGen d2){
+    void getDiff(DiffGen d2){
 
         int l1 = this.data.length();
         int l2 = d2.data.length();
@@ -69,9 +69,36 @@ public class DiffGen {
             }
 
         }
-        String S3 = new String(seq);
+        String CommonSeq = new String(seq);
         //System.out.println("\nThe longest subsequence is : "+S3);
-        
+
+        /*
+        Now that we have the common subsequence, lets see the diff output
+         */
+
+        String Comp;
+        if (l1 > l2){
+            Comp = this.data;
+        }
+        else{
+            Comp = d2.data;
+        }
+
+        System.out.println("Here's the Diff output : ");
+
+        i = 0;
+        j = 0;
+
+        for (i = 0; i<Comp.length(); i++){
+            if(Comp.charAt(i) == CommonSeq.charAt(j)){
+                j++;
+            }
+            else{
+                System.out.print(Comp.charAt(i));
+            }
+        }
+
+
 
     }
 
@@ -89,7 +116,7 @@ public class DiffGen {
 
         d2 = new DiffGen(S2);
 
-        d1.getLCS(d2);
+        d1.getDiff(d2);
         //d1.print();
         //d2.print();
 
