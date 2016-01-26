@@ -65,6 +65,14 @@ public class Trie {
 
         System.out.println("Try putting some crap in a Trie");
         T.addElements();
+        System.out.println("Now lets see if that oddity worked..");
+        System.out.println("Enter a string to check :");
+        Scanner input = new Scanner(System.in);
+        String S = input.next();
+        if(T.rootNode.exists(S))
+            System.out.println("Your String exists!");
+        else
+            System.out.println("No go bro..");
 
 
 
