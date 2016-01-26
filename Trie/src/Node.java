@@ -5,12 +5,12 @@ import java.util.HashMap;
  */
 public class Node {
     String data;
-    HashMap <String,Node>  Map;
+    HashMap <String,Node>  map;
 
 
-    Node(String S){
-        this.data = new String(S);
-        this.Map = new HashMap<>();
+    Node(){
+        this.data = new String("This is Root!");
+        this.map = new HashMap<>();
     }
 
 }

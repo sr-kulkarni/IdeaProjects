@@ -13,13 +13,45 @@ public class Trie {
         Node rootNode = null;
     }
 
+    private void insert(Node p,String S){
+
+
+        if(p.map.containsKey(""+S.charAt(0))){
+
+            if(S.length() > 1){
+                Node p2 = p.map.get(""+S.charAt(0));
+                if(p2.map.get(""+S.charAt(1)) == null){
+                    p2.map.put(""+S.charAt(1),new Node());
+                }
+                insert(p2,S.substring(1));
+            }
+
+
+        }
+        //Match not found
+        else{
+            p.data= ""+S.charAt(0);
+            if(S.length() > 1){
+                Node p2 = p.map.get(""+S.charAt(1));
+                if(p2 == null){
+                    p.map.put(""+S.charAt(1),new Node());
+                }
+                p2 = p.map.get(""+S.charAt(1));
+                insert(p2,S.substring(1));
+            }
+        }
+
+    }
+
     public void addElements(){
         Scanner input = new Scanner(System.in);
         while(true){
             System.out.println("Enter a String  :");
             String userS = new String(input.next());
             System.out.println("Your string is "+ userS);
-            System.out.println("End? Enter 'END' to end");
+            this.rootNode = new Node();
+            this.insert(this.rootNode,userS);
+            System.out.println("End? Enter 'END' to end or anything else to keep rollin'");
             String next = input.next();
             if(next.equals("END"))
                 break;
