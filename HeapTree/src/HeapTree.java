@@ -58,7 +58,8 @@ public class HeapTree {
 
         System.out.println("Ok now we have a Linked List of sorts. :)");
 
-        iterator1 = this.root;
+        iterator1 = PSEUDO.rchild;
+        this.root = iterator1;
         int size = 0;
         ArrayList<Integer> tempL = new ArrayList<>();
         while(iterator1 != null){
@@ -73,7 +74,7 @@ public class HeapTree {
         this.root = rockNRoll(tempL,0,size-1);
 
         System.out.println("Did it work? Lets check out : ");
-        this.root.inorder();
+        this.root.preorder();
 
 
 
@@ -143,6 +144,8 @@ public class HeapTree {
             return;
         }
         this.root.inorder();
+        System.out.println("Pre order is -");
+        this.root.preorder();
 
     }
 

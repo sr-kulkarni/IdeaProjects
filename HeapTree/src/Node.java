@@ -26,7 +26,18 @@ public class Node {
 
     }
 
+    public void preorder(){
 
+
+        System.out.print(" "+this.data);
+        if(this.lchild != null){
+            this.lchild.preorder();
+        }
+        if(this.rchild != null){
+            this.rchild.preorder();
+        }
+
+    }
 
 
 
