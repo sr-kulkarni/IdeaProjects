@@ -14,9 +14,41 @@ public class HeapTree {
     }
 
 
-    /*public Node balanceIt(){
+    public void balanceIt(){
 
-    }*/
+        //Create a Pseudo root first
+        Node PSEUDO = new Node(0);
+        PSEUDO.rchild = this.root;
+
+        Node iterator1 = PSEUDO.rchild;
+        Node iterator2 = PSEUDO;
+        while(iterator1 != null){
+
+            if(iterator1.lchild != null){
+                Node temp = iterator1.lchild;
+                iterator2.rchild = temp;
+                iterator1.lchild = temp.rchild;
+                temp.rchild = iterator1;
+                iterator1 = temp;
+            }
+            else{
+                iterator2 = iterator2.rchild;
+                iterator1 = iterator1.rchild;
+            }
+
+        }
+
+        System.out.println("Ok now we have a Linked List of sorts. :)");
+
+        iterator1 = this.root;
+
+        while(iterator1 != null){
+            System.out.print(" "+iterator1.data);
+            iterator1 = iterator1.rchild;
+        }
+
+
+    }
 
 
 
@@ -97,6 +129,8 @@ public class HeapTree {
         System.out.println("Done. Your inorder expression is : ");
         H.printInorder();
 
+        System.out.println("\nNow lets try and balace it :-) ");
+        H.balanceIt();
 
 
 
