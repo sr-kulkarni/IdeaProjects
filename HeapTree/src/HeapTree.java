@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -11,6 +12,23 @@ public class HeapTree {
     HeapTree(){
         this.root = new Node(0);
         isRoot = true;
+    }
+
+
+    private Node rockNRoll(ArrayList<Integer> temp,int start,int end){
+
+        if(start > end){
+            return null;
+        }
+
+        int mid = start+(end - start)/2;
+        Node MidNode = new Node(temp.get(mid));
+
+        MidNode.lchild = rockNRoll(temp,start,mid-1);
+        MidNode.rchild = rockNRoll(temp,mid+1,end);
+
+        return MidNode;
+
     }
 
 
@@ -41,11 +59,22 @@ public class HeapTree {
         System.out.println("Ok now we have a Linked List of sorts. :)");
 
         iterator1 = this.root;
-
+        int size = 0;
+        ArrayList<Integer> tempL = new ArrayList<>();
         while(iterator1 != null){
+            size++;
             System.out.print(" "+iterator1.data);
+            tempL.add(iterator1.data);
             iterator1 = iterator1.rchild;
         }
+
+        System.out.println("\nNow time for some action. This is the real balancing act!");
+
+        this.root = rockNRoll(tempL,0,size-1);
+
+        System.out.println("Did it work? Lets check out : ");
+        this.root.inorder();
+
 
 
     }
@@ -129,7 +158,7 @@ public class HeapTree {
         System.out.println("Done. Your inorder expression is : ");
         H.printInorder();
 
-        System.out.println("\nNow lets try and balace it :-) ");
+        System.out.println("\nNow lets try and balance it :-) ");
         H.balanceIt();
 
 
